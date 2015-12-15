@@ -18,4 +18,9 @@ let updateTransitionTable = (database, words) => {
   return res;
 };
 
-export default { updateTransitionTable };
+let getNextCharacter = (transitionTable, currentCharacter) => {
+  let transitionArray = transitionTable[currentCharacter] || ['$'];
+  return transitionArray[(Math.random() * transitionArray.length) | 0];
+};
+
+export default { addWordIntoTransitionTable, updateTransitionTable, getNextCharacter };

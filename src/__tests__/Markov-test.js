@@ -1,39 +1,58 @@
 jest.dontMock('../Markov');
 
-var database = { transitionTable: {} };
+let database = { transitionTable: {} };
 
 describe('Markov', function() {
-  it('Try to update database with empty array', function() {
-    var Markov = require('../Markov');
-    var res = Markov.updateTransitionTable(database, []);
-    expect(res).toEqual(database);
+  describe('updateTransitionTable', function() {
+    it('Try to update database with empty array', function() {
+      let Markov = require('../Markov');
+      let res = Markov.updateTransitionTable(database, []);
+      expect(res).toEqual(database);
+    });
+
+    it('Try to update database with ["abc"]', function() {
+      let Markov = require('../Markov');
+      let expected = {
+        transitionTable: {
+          'a': ['b'],
+          'b': ['c'],
+          'c': ['$']
+        }
+      };
+      let res = Markov.updateTransitionTable(database, ["abc"]);
+      expect(res).toEqual(expected);
+    });
+
+    it('Try to update database with ["abc", "cde"]', function() {
+      let Markov = require('../Markov');
+      let expected = {
+        transitionTable: {
+          'a': ['b'],
+          'b': ['c'],
+          'c': ['$', 'd'],
+          'd': ['e'],
+          'e': ['$']
+        }
+      };
+      let res = Markov.updateTransitionTable(database, ["abc", "cde"]);
+      expect(res).toEqual(expected);
+    });
   });
 
-  it('Try to update database with ["abc"]', function() {
-    var Markov = require('../Markov');
-    var expected = {
-      transitionTable: {
-        'a': ['b'],
-        'b': ['c'],
-        'c': ['$']
-      }
-    };
-    var res = Markov.updateTransitionTable(database, ["abc"]);
-    expect(res).toEqual(expected);
-  });
-
-  it('Try to update database with ["abc", "cde"]', function() {
-    var Markov = require('../Markov');
-    var expected = {
-      transitionTable: {
-        'a': ['b'],
-        'b': ['c'],
-        'c': ['$', 'd'],
-        'd': ['e'],
-        'e': ['$']
-      }
-    };
-    var res = Markov.updateTransitionTable(database, ["abc", "cde"]);
-    expect(res).toEqual(expected);
+  describe('getNextCharacter', function() {
+    it('Should return \'$\'', function() {
+      let Markov = require('../Markov');
+      let expected = '$';
+      let res = Markov.getNextCharacter({}, 'a');
+      expect(res).toBe(expected);
+    });
+    it('Should return \'a\'', function() {
+      let Markov = require('../Markov');
+      let expected = 'a';
+      let res = Markov.getNextCharacter({
+        'a': ['a']
+      }, 'a');
+      expect(res).toBe(expected);
+    });
   });
 });

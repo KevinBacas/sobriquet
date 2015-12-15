@@ -5,5 +5,3 @@ let database = {
 };
 let words = ['abc'];
 database = updateTransitionTable(database, words);
-
-export default { updateTransitionTable };

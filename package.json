@@ -1,0 +1,34 @@
+{
+  "name": "namegenerator",
+  "version": "0.0.1",
+  "description": "A name generator based on Markov chains",
+  "main": "./dist/main.js",
+  "devDependencies": {
+    "babel": "^5.8.34",
+    "babel-eslint": "^4.1.6",
+    "babel-jest": "^5.0.0",
+    "babel-loader": "^5.4.0",
+    "jest-cli": "^0.8.1",
+    "webpack": "^1.12.9"
+  },
+  "scripts": {
+    "compile": "webpack --colors --progress",
+    "prod": "webpack -p",
+    "start": "npm run compile && node ./dist/main.js",
+    "test": "jest"
+  },
+  "author": "Kevin BACAS <bacas.kevin@hotmail.fr>",
+  "license": "MIT",
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
+  }
+}

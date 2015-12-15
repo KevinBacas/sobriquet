@@ -55,4 +55,23 @@ describe('Markov', function() {
       expect(res).toBe(expected);
     });
   });
+
+  describe('generateRandomWord', function() {
+    it('Should return \'a\'', function() {
+      let Markov = require('../Markov');
+      let expected = 'a';
+      let res = Markov.generateRandomWord({}, 'a');
+      expect(res).toBe(expected);
+    });
+    it('Should return \'abc\'', function() {
+      let Markov = require('../Markov');
+      let expected = 'abc';
+      let res = Markov.generateRandomWord({
+        'a': ['b'],
+        'b': ['c'],
+        'c': ['$']
+      }, 'a');
+      expect(res).toBe(expected);
+    });
+  });
 });

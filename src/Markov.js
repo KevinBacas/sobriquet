@@ -23,4 +23,14 @@ let getNextCharacter = (transitionTable, currentCharacter) => {
   return transitionArray[(Math.random() * transitionArray.length) | 0];
 };
 
-export default { addWordIntoTransitionTable, updateTransitionTable, getNextCharacter };
+let generateRandomWord = (transitionTable, firstCharacter) => {
+  let res = firstCharacter;
+  let nextChar = getNextCharacter(transitionTable, firstCharacter);
+  while (nextChar !== '$') {
+    res += nextChar;
+    nextChar = getNextCharacter(transitionTable, nextChar);
+  }
+  return res;
+};
+
+export default { addWordIntoTransitionTable, updateTransitionTable, getNextCharacter, generateRandomWord };

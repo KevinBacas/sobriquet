@@ -6,14 +6,14 @@ sobriquet is a name generator build in Javascript based on Markov Chains.
 
 ## Usage
 ```shell
-# sobriquet swaggy some words -n 1
+$ sobriquet swaggy some words -n 1
 Random word(s) generated:
 dsome
 ```
 
 ## Help documentation
 ```shell
-sobriquet -h
+$ sobriquet -h
 
 Options
 

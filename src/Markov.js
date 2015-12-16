@@ -18,17 +18,17 @@ let updateTransitionTable = (database, words) => {
   return res;
 };
 
-let getNextCharacter = (transitionTable, currentCharacter) => {
+let getNextCharacter = (transitionTable, currentCharacter, randomGeneratorFunction = Math.random) => {
   let transitionArray = transitionTable[currentCharacter] || ['$'];
-  return transitionArray[(Math.random() * transitionArray.length) | 0];
+  return transitionArray[(randomGeneratorFunction() * transitionArray.length) | 0];
 };
 
-let generateRandomWord = (transitionTable, firstCharacter) => {
+let generateRandomWord = (transitionTable, firstCharacter, randomGeneratorFunction = Math.random) => {
   let res = firstCharacter;
-  let nextChar = getNextCharacter(transitionTable, firstCharacter);
+  let nextChar = getNextCharacter(transitionTable, firstCharacter, randomGeneratorFunction);
   while (nextChar !== '$') {
     res += nextChar;
-    nextChar = getNextCharacter(transitionTable, nextChar);
+    nextChar = getNextCharacter(transitionTable, nextChar, randomGeneratorFunction);
   }
   return res;
 };

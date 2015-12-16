@@ -40,10 +40,11 @@ describe('Markov', function() {
   });
 
   describe('getNextCharacter', function() {
+    let randomGeneratorFunction = () => 0;
     it('Should return \'$\'', function() {
       let Markov = require('../Markov');
       let expected = '$';
-      let res = Markov.getNextCharacter({}, 'a');
+      let res = Markov.getNextCharacter({}, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
     it('Should return \'a\'', function() {
@@ -51,16 +52,25 @@ describe('Markov', function() {
       let expected = 'a';
       let res = Markov.getNextCharacter({
         'a': ['a']
-      }, 'a');
+      }, 'a', randomGeneratorFunction);
+      expect(res).toBe(expected);
+    });
+    it('Should return \'b\'', function() {
+      let Markov = require('../Markov');
+      let expected = 'b';
+      let res = Markov.getNextCharacter({
+        'a': ['b', 'a']
+      }, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
   });
 
   describe('generateRandomWord', function() {
+    let randomGeneratorFunction = () => 0;
     it('Should return \'a\'', function() {
       let Markov = require('../Markov');
       let expected = 'a';
-      let res = Markov.generateRandomWord({}, 'a');
+      let res = Markov.generateRandomWord({}, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
     it('Should return \'abc\'', function() {
@@ -70,7 +80,17 @@ describe('Markov', function() {
         'a': ['b'],
         'b': ['c'],
         'c': ['$']
-      }, 'a');
+      }, 'a', randomGeneratorFunction);
+      expect(res).toBe(expected);
+    });
+    it('Should return \'abc\'', function() {
+      let Markov = require('../Markov');
+      let expected = 'abc';
+      let res = Markov.generateRandomWord({
+        'a': ['b', 'e'],
+        'b': ['c', 'f'],
+        'c': ['$', 'n']
+      }, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
   });

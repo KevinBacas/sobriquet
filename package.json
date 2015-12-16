@@ -1,8 +1,12 @@
 {
   "name": "sobriquet",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A name generator based on Markov chains",
-  "main": "./dist/main.js",
+  "main": "./bin/main",
+  "preferGlobal": true,
+  "bin": {
+    "sobriquet": "./dist/main.js"
+  },
   "devDependencies": {
     "babel": "^5.8.34",
     "babel-eslint": "^4.1.6",

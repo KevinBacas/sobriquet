@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   entry: './src/main.js',
@@ -17,5 +18,8 @@ module.exports = {
         loader: 'babel-loader',
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.BannerPlugin("#!/usr/bin/env node", {raw:true})
+  ]
 };

@@ -54,7 +54,7 @@
 
 	var _MarkovJs = __webpack_require__(121);
 
-	var cli = (0, _commandLineArgs2['default'])([{ name: 'words', type: String, multiple: true, defaultOption: true, defaultValue: [], description: 'List of words injected to the Markov chain' }, { name: 'number', alias: 'n', type: Number, defaultValue: 10, description: 'Number of words you want to generate' }, { name: 'start', alias: 's', type: String, defaultValue: 'a', description: 'The starting letter' }, { name: 'help', alias: 'h', type: Boolean, defaultValue: false, description: 'Display the usage of the CLI' }]);
+	var cli = (0, _commandLineArgs2['default'])([{ name: 'words', type: String, multiple: true, defaultOption: true, defaultValue: [], description: 'List of words injected to the Markov chain' }, { name: 'number', alias: 'n', type: Number, defaultValue: 10, description: 'Number of words you want to generate' }, { name: 'start', alias: 's', type: String, defaultValue: '\0', description: 'The starting letter' }, { name: 'help', alias: 'h', type: Boolean, defaultValue: false, description: 'Display the usage of the CLI' }]);
 
 	var options = cli.parse();
 
@@ -6904,6 +6904,10 @@
 	var generateRandomWord = function generateRandomWord(transitionTable, firstCharacter) {
 	  var randomGeneratorFunction = arguments.length <= 2 || arguments[2] === undefined ? Math.random : arguments[2];
 
+	  if (firstCharacter === '\0') {
+	    firstCharacter = getRandomStartingLetter(transitionTable, randomGeneratorFunction);
+	  }
+
 	  var res = firstCharacter;
 	  var nextChar = getNextCharacter(transitionTable, firstCharacter, randomGeneratorFunction);
 	  while (nextChar !== '$') {
@@ -6911,6 +6915,18 @@
 	    nextChar = getNextCharacter(transitionTable, nextChar, randomGeneratorFunction);
 	  }
 	  return res;
+	};
+
+	var getRandomStartingLetter = function getRandomStartingLetter(transitionTable) {
+	  var randomGeneratorFunction = arguments.length <= 1 || arguments[1] === undefined ? Math.random : arguments[1];
+
+	  var someArray = [];
+	  for (var character in transitionTable) {
+	    if (transitionTable.hasOwnProperty(character)) {
+	      someArray.push(character);
+	    }
+	  }
+	  return someArray[randomGeneratorFunction() * someArray.length | 0];
 	};
 
 	exports['default'] = { addWordIntoTransitionTable: addWordIntoTransitionTable, updateTransitionTable: updateTransitionTable, getNextCharacter: getNextCharacter, generateRandomWord: generateRandomWord };

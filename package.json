@@ -1,5 +1,5 @@
 {
-  "name": "namegenerator",
+  "name": "swaggy",
   "version": "0.0.1",
   "description": "A name generator based on Markov chains",
   "main": "./dist/main.js",
@@ -13,12 +13,17 @@
     "webpack": "^1.12.9"
   },
   "scripts": {
+    "prepublish": "npm run compile",
     "compile": "webpack --colors --progress",
     "dev": "npm run test -- --watch",
     "start": "node ./dist/main.js",
     "test": "jest"
   },
-  "author": "Kevin BACAS <bacas.kevin@hotmail.fr>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/restack/swaggy.git"
+  },
+  "author": "Restack Cloud <contact@restackcloud.com>",
   "license": "MIT",
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",

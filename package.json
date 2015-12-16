@@ -14,8 +14,8 @@
   },
   "scripts": {
     "compile": "webpack --colors --progress",
-    "prod": "webpack -p",
-    "start": "npm run compile && node ./dist/main.js",
+    "dev": "npm run test -- --watch",
+    "start": "node ./dist/main.js",
     "test": "jest"
   },
   "author": "Kevin BACAS <bacas.kevin@hotmail.fr>",

@@ -24,6 +24,10 @@ let getNextCharacter = (transitionTable, currentCharacter, randomGeneratorFuncti
 };
 
 let generateRandomWord = (transitionTable, firstCharacter, randomGeneratorFunction = Math.random) => {
+  if(firstCharacter === '\0') {
+    firstCharacter = getRandomStartingLetter(transitionTable, randomGeneratorFunction);
+  }
+
   let res = firstCharacter;
   let nextChar = getNextCharacter(transitionTable, firstCharacter, randomGeneratorFunction);
   while (nextChar !== '$') {
@@ -32,5 +36,15 @@ let generateRandomWord = (transitionTable, firstCharacter, randomGeneratorFuncti
   }
   return res;
 };
+
+let getRandomStartingLetter = (transitionTable, randomGeneratorFunction = Math.random) => {
+  let someArray = [];
+  for (let character in transitionTable) {
+    if (transitionTable.hasOwnProperty(character)) {
+      someArray.push(character);
+    }
+  }
+  return someArray[(randomGeneratorFunction() * someArray.length) | 0];
+}
 
 export default { addWordIntoTransitionTable, updateTransitionTable, getNextCharacter, generateRandomWord };

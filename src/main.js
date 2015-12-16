@@ -4,7 +4,7 @@ import { updateTransitionTable, generateRandomWord } from './Markov.js';
 let cli = commandLineArgs([
   { name: 'words', type: String, multiple: true, defaultOption: true, defaultValue: [], description: 'List of words injected to the Markov chain' },
   { name: 'number', alias: 'n', type: Number, defaultValue: 10, description: 'Number of words you want to generate' },
-  { name: 'start', alias: 's', type: String, defaultValue: 'a', description: 'The starting letter' },
+  { name: 'start', alias: 's', type: String, defaultValue: '\0', description: 'The starting letter' },
   { name: 'help', alias: 'h', type: Boolean, defaultValue: false, description: 'Display the usage of the CLI' }
 ]);
 

@@ -1,5 +1,5 @@
-# swaggy
-swaggy is a name generator build in Javascript based on Markov Chains.
+# sobriquet
+sobriquet is a name generator build in Javascript based on Markov Chains.
 
 ## Usage
 ```shell

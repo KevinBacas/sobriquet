@@ -1,5 +1,5 @@
 {
-  "name": "swaggy",
+  "name": "sobriquet",
   "version": "0.0.1",
   "description": "A name generator based on Markov chains",
   "main": "./dist/main.js",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/restack/swaggy.git"
+    "url": "https://github.com/restack/sobriquet.git"
   },
   "author": "Restack Cloud <contact@restackcloud.com>",
   "license": "MIT",

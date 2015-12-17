@@ -1,3 +1,4 @@
+import './object-assign-polyfill';
 import commandLineArgs from 'command-line-args';
 import { updateTransitionTable, generateRandomWord } from './Markov.js';
 

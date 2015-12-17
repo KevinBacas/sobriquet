@@ -1,6 +1,6 @@
 {
   "name": "sobriquet",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A name generator based on Markov chains",
   "main": "./bin/main",
   "preferGlobal": true,

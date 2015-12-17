@@ -1,5 +1,5 @@
 # sobriquet
-sobriquet is a name generator build in Javascript based on Markov Chains.
+sobriquet is a name generator built in Javascript and based on Markov Chains.
 
 ## Installation NPM
 `npm i -g sobriquet`

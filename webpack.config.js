@@ -14,12 +14,13 @@ module.exports = {
         test: /\.jsx?$/,
         include: [
           path.resolve(__dirname, './src'),
+          path.resolve(__dirname, './node_modules'),
         ],
         loader: 'babel-loader',
       }
     ]
   },
   plugins: [
-    new webpack.BannerPlugin("#!/usr/bin/env node", {raw:true})
+    new webpack.BannerPlugin("#!/usr/bin/env node", {raw: true})
   ]
 };

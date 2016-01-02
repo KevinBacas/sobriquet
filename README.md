@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/KevinBacas/sobriquet.svg?style=svg)](https://circleci.com/gh/KevinBacas/sobriquet)
+
 # sobriquet
 sobriquet is a name generator built in Javascript and based on Markov Chains.
 

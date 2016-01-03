@@ -1,6 +1,6 @@
 {
   "name": "sobriquet",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A name generator based on Markov chains",
   "main": "./bin/main",
   "preferGlobal": true,
@@ -17,8 +17,9 @@
     "webpack": "^1.12.9"
   },
   "scripts": {
-    "prepublish": "npm run compile",
+    "prepublish": "npm run compile-prod",
     "compile": "webpack --colors --progress",
+    "compile-prod": "webpack -p",
     "dev": "npm run test -- --watch",
     "start": "node ./dist/main.js",
     "test": "jest"

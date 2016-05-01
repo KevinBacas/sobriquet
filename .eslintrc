@@ -1,15 +1,6 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "globals" : {
-    "__DEV__"      : false,
-    "__PROD__"     : false,
-    "__DEBUG__"    : false,
-    "__DEBUG_NEW_WINDOW__" : false,
-    "__BASENAME__" : false,
-    "$crisp": true,
-    "window.$crisp": true,
-  },
   "env": {
     "browser": true,
     "jest": true

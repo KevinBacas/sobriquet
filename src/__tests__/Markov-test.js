@@ -1,95 +1,88 @@
-jest.dontMock('../Markov');
+jest.unmock('../Markov');
 
-let database = { transitionTable: {} };
+import { updateTransitionTable, getNextCharacter, generateRandomWord } from '../Markov';
 
-describe('Markov', function() {
-  describe('updateTransitionTable', function() {
-    it('Try to update database with empty array', function() {
-      let Markov = require('../Markov');
-      let res = Markov.updateTransitionTable(database, []);
+const database = { transitionTable: {} };
+
+describe('Markov', () => {
+  describe('updateTransitionTable', () => {
+    it('Try to update database with empty array', () => {
+      const res = updateTransitionTable(database, []);
       expect(res).toEqual(database);
     });
 
-    it('Try to update database with ["abc"]', function() {
-      let Markov = require('../Markov');
-      let expected = {
+    it('Try to update database with \'abc\'', () => {
+      const expected = {
         transitionTable: {
-          'a': ['b'],
-          'b': ['c'],
-          'c': ['$']
-        }
+          a: ['b'],
+          b: ['c'],
+          c: ['$'],
+        },
       };
-      let res = Markov.updateTransitionTable(database, ["abc"]);
+      const res = updateTransitionTable(database, ['abc']);
       expect(res).toEqual(expected);
     });
 
-    it('Try to update database with ["abc", "cde"]', function() {
-      let Markov = require('../Markov');
-      let expected = {
+    it('Try to update database with \'abc\' and \'cde\'', () => {
+      const expected = {
         transitionTable: {
-          'a': ['b'],
-          'b': ['c'],
-          'c': ['$', 'd'],
-          'd': ['e'],
-          'e': ['$']
-        }
+          a: ['b'],
+          b: ['c'],
+          c: ['$', 'd'],
+          d: ['e'],
+          e: ['$'],
+        },
       };
-      let res = Markov.updateTransitionTable(database, ["abc", "cde"]);
+      const res = updateTransitionTable(database, ['abc', 'cde']);
       expect(res).toEqual(expected);
     });
   });
 
-  describe('getNextCharacter', function() {
-    let randomGeneratorFunction = () => 0;
-    it('Should return \'$\'', function() {
-      let Markov = require('../Markov');
-      let expected = '$';
-      let res = Markov.getNextCharacter({}, 'a', randomGeneratorFunction);
+  describe('getNextCharacter', () => {
+    const randomGeneratorFunction = () => 0;
+    it('Should return \'$\'', () => {
+      const expected = '$';
+      const res = getNextCharacter({}, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
-    it('Should return \'a\'', function() {
-      let Markov = require('../Markov');
-      let expected = 'a';
-      let res = Markov.getNextCharacter({
-        'a': ['a']
+    it('Should return \'a\'', () => {
+      const expected = 'a';
+      const res = getNextCharacter({
+        a: ['a'],
       }, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
-    it('Should return \'b\'', function() {
-      let Markov = require('../Markov');
-      let expected = 'b';
-      let res = Markov.getNextCharacter({
-        'a': ['b', 'a']
+    it('Should return \'b\'', () => {
+      const expected = 'b';
+      const res = getNextCharacter({
+        a: ['b', 'a'],
       }, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
   });
 
-  describe('generateRandomWord', function() {
-    let randomGeneratorFunction = () => 0;
-    it('Should return \'a\'', function() {
-      let Markov = require('../Markov');
-      let expected = 'a';
-      let res = Markov.generateRandomWord({}, 'a', randomGeneratorFunction);
+  describe('generateRandomWord', () => {
+    const randomGeneratorFunction = () => 0;
+    it('Should return \'a\'', () => {
+      const expected = 'a';
+      const res = generateRandomWord({}, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
-    it('Should return \'abc\'', function() {
-      let Markov = require('../Markov');
-      let expected = 'abc';
-      let res = Markov.generateRandomWord({
-        'a': ['b'],
-        'b': ['c'],
-        'c': ['$']
+    it('Should return \'abc\'', () => {
+      const expected = 'abc';
+      const res = generateRandomWord({
+        a: ['b'],
+        b: ['c'],
+        c: ['$'],
       }, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });
-    it('Should return \'abc\'', function() {
-      let Markov = require('../Markov');
-      let expected = 'abc';
-      let res = Markov.generateRandomWord({
-        'a': ['b', 'e'],
-        'b': ['c', 'f'],
-        'c': ['$', 'n']
+    it('Should return \'abc\'', () => {
+      const expected = 'abc';
+      const res = generateRandomWord({
+        a: ['b', 'e'],
+        b: ['c', 'f'],
+        c: ['$', 'n'],
       }, 'a', randomGeneratorFunction);
       expect(res).toBe(expected);
     });

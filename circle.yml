@@ -3,3 +3,8 @@ machine:
     - docker
   node:
     version: 5.5.0
+ deployment:
+  codecov:
+    branch: /.*/
+    commands:
+      - bash <(curl -s https://codecov.io/bash)
